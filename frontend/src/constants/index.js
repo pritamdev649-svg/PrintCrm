@@ -36,3 +36,18 @@ export const ORDER_STAGES = [
 export const PAYMENT_METHODS = ['UPI', 'Cash', 'Bank Transfer', 'Cheque'];
 
 export const PROVIDERS = ['Interakt', 'Wati', 'AiSensy', 'Twilio', 'Custom HTTP Gateway'];
+
+export const API_ENDPOINTS = {
+  AUTH_LOGIN: '/auth/login',
+  AUTH_ME: '/auth/me',
+  LEADS: '/leads',
+  LEAD_BY_ID: (id) => `/leads/${id}`,
+  LEAD_NOTES: (id) => `/leads/${id}/notes`,
+  ORDERS: '/orders',
+  ORDER_BY_ID: (id) => `/orders/${id}`,
+  ORDER_STAGE: (id) => `/orders/${id}/stage`,
+  ORDER_FROM_LEAD: (leadId) => `/orders/from-lead/${leadId}`,
+  PAYMENTS: '/payments',
+  TEAM: '/team',
+  TEAM_MEMBER_BY_ID: (id) => `/team/${id}`
+};

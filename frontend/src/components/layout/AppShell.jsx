@@ -3,6 +3,7 @@ import {
   Bell,
   CreditCard,
   Home,
+  LogOut,
   Menu,
   MessageSquare,
   PackageCheck,
@@ -24,7 +25,7 @@ const navItems = [
 ];
 
 export const AppShell = ({ activePage, onChangePage, children }) => {
-  const { activeRole, setActiveRole } = useCRMData();
+  const { activeRole, setActiveRole, user, logout } = useCRMData();
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   return (
@@ -119,13 +120,26 @@ export const AppShell = ({ activePage, onChangePage, children }) => {
             >
               <Menu size={19} />
             </button>
-            <h1 className="font-sans text-base font-bold text-ink">Welcome back, Pritam!</h1>
+            <h1 className="font-sans text-base font-bold text-ink">Welcome back, {user?.name?.split(' ')[0] || 'User'}!</h1>
           </div>
           <div className="flex items-center gap-2">
             <button className="icon-button animate-colors" aria-label="Notifications">
               <Bell size={18} />
             </button>
-            <div className="grid h-8 w-8 place-items-center rounded-full bg-brand text-xs font-bold text-white">D</div>
+            <div 
+              className="grid h-8 w-8 place-items-center rounded-full bg-brand text-xs font-bold text-white uppercase"
+              title={user?.name}
+            >
+              {user?.name?.charAt(0) || 'U'}
+            </div>
+            <button 
+              className="icon-button text-system-red hover:bg-system-redLight hover:border-system-red/30"
+              onClick={logout}
+              title="Sign Out"
+              aria-label="Sign Out"
+            >
+              <LogOut size={16} />
+            </button>
           </div>
         </header>
         <div className="p-4 md:p-6">{children}</div>
