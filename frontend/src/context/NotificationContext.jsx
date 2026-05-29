@@ -43,8 +43,11 @@ export const NotificationProvider = ({ children }) => {
 
         const { getToken, onMessage } = await import('firebase/messaging');
 
+        const rawVapid = import.meta.env.VITE_FIREBASE_VAPID_KEY;
+        const isValidVapid = rawVapid && rawVapid.length > 30;
+
         const token = await getToken(messaging, {
-          vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY || undefined
+          vapidKey: isValidVapid ? rawVapid : undefined
         });
 
         if (token) {
